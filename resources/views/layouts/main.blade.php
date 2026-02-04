@@ -26,10 +26,10 @@
                     <a href='/' class='navbar-brand'>Eventos</a>
                 </li>
                 <li class='nav-item'>
-                    <a href='/' class='navbar-brand'>Criar eventos</a>
+                    <a href='/events/create' class='navbar-brand'>Criar eventos</a>
                 </li>
                 <li class='nav-item'>
-                    <a href='/' class='navbar-brand'>Entrar</a>
+                    <a href='/login' class='navbar-brand'>Entrar</a>
                 </li>
             </ul>
         </nav>

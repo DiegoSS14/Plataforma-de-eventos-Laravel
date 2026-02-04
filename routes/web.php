@@ -1,27 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [EventController::class, 'index']);
 
-Route::get('/contact', function() {
-    return view(
-        'contact', [
-            'nome'=> 'Diego', 'idade' => 22, 'profissao' => 'Desenvolvedor Full Stack',
-            'nomes' => ['Maria', 'Davi', 'Rafaela', 'Carlos', 'Antônio'],
-            'numeros' => [1, 2, 3, 4, 5, 6, 7, 8],
-            ]);
-});
-
-Route::get('/products', function() {
-
-    // Pega query params do path e aramazena na variável
-    $busca = request('search');
-
-    return view('products', ['busca' => $busca]);
-});
+Route::get('/events/create', [EventController::class, 'create']);
 
 Route::get('/product/{id?}', function($id = null) {
     return view('product', ['id' => $id]);
