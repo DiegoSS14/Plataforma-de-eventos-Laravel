@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use \Illuminate\Http\Request;
 use App\Models\Event;
 
-class EventController extends Controller
-{
+class EventController extends Controller {
     public function index() {
         $events = Event::all();
         return view('welcome', ['events'=>$events]);
@@ -24,8 +23,26 @@ class EventController extends Controller
         $event->private = $request->private;
         $event->description = $request->description;
 
+        // Imagem
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            // Salvando imagem na requisição para persistir no banco
+            $request->image->move(public_path('img/events'), $imageName);
+            $event->image = $imageName;
+        } else {
+            dd($request->allFiles());
+        }
+
         $event->save();
 
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
+    }
+
+    public function show($id) {
+        $event = Event::findOrFail($id);
+        return view('events.show', ['event' => $event]);
     }
 }
