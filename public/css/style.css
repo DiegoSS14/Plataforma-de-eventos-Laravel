@@ -65,6 +65,7 @@ header {
 
 /* Search */
 #search-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,7 +74,30 @@ header {
     background-color: #f08000;
 }
 
+#search-container::before {
+    content: "";
+    background-image: url('../img/fred-moon-hjtaJzcANL4-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+#search-container h1 {
+    position: relative;
+    z-index: 1;
+    font-size: 36px;
+}
+
 #search-container form {
+    position: relative;
+    z-index: 1;
     display: flex;
     width: 90%;
     max-width: 400px;
@@ -210,9 +234,14 @@ footer {
     gap: 4px;
 }
 
+.form-row {
+    flex-direction: row;
+}
+
 /* Event Page */
 
-#image-container, #info-container {
+#image-container,
+#info-container {
     margin-top: 30px;
 }
 
@@ -251,6 +280,17 @@ footer {
 
 #event-submit {
     margin: 20px 0;
+}
+
+.items-list {
+    list-style: none;
+    padding-left: 0;
+    gap: 4px;
+}
+
+.items-list li {
+    display: flex;
+    align-items: center;
 }
 
 #info-container h3,
